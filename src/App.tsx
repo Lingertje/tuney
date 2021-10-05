@@ -1,5 +1,4 @@
-import React, { FC } from "react";
-import "./App.scss";
+import { FC } from "react";
 
 const App: FC = () => {
   return (

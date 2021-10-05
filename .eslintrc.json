@@ -26,6 +26,8 @@
         "quotes": ["error", "double"],
         "jsx-quotes": ["error", "prefer-double"],
         "semi": ["error", "always"],
-        "no-multi-spaces": ["error"]
+        "no-multi-spaces": ["error"],
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off"
     }
 }
