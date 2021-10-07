@@ -1,6 +1,7 @@
 import { Layout } from "components/Layout";
+import { Searchbar } from "components/Searchbar";
 import { FC, useEffect, useState } from "react";
-import { Container } from "react-grid-system";
+import { Container, Row, Col } from "react-grid-system";
 
 import { Artist } from "types/Artist";
 
@@ -32,8 +33,11 @@ const Artists: FC = () => {
   return (
     <Layout>
       <Container>
-        <h1>Artists</h1>
-        <input type="text" name="search" onChange={(e) => fetctArtistsBySearch(e.target.value)} />
+        <Row>
+          <Col xs={12}>
+            <Searchbar name="search" placeholder="Search artist..." callback={fetctArtistsBySearch} />
+          </Col>
+        </Row>
         <ul>
           {
             artists.map(artist => {

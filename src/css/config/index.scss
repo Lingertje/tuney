@@ -1,0 +1,8 @@
+//======================//
+// CONFIG
+//======================//
+// Desc: Collection of all configuration partials.
+// Allows global config to be imported as single module.
+// No code that compiles to actual CSS can go in this folder.
+
+@forward 'colors';

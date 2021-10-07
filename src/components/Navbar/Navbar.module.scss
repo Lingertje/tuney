@@ -1,17 +1,31 @@
-@use'src/css/config' as *;
+@use '../../css/config' as *;
 
 .navbar {
     &__list {
         display: flex;
         flex-direction: row;
+        justify-content: flex-end;
     }
 
     &__item {
+        opacity: 0.4;
+        transition: opacity 150ms ease-out;
+
+        :global(.active){
+            text-decoration: underline;
+            text-decoration-skip-ink: auto;
+        }
+
         a {
             display: block;
             padding: 16px;
             color: $color-white;
+            font-weight: 700;
             text-decoration: none;
+        }
+
+        &:hover {
+            opacity: 0.8;
         }
     }
 }

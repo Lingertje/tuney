@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import styles from "./Navbar.module.scss";
 
@@ -8,10 +8,10 @@ const Navbar: FC = () => {
     <nav className={styles["navbar"]}>
       <ul className={`${styles["navbar__list"]} reset-list`}>
         <li className={styles["navbar__item"]}>
-          <Link to="/">Homepage</Link>
+          <NavLink to="/" exact>Homepage</NavLink>
         </li>
         <li className={styles["navbar__item"]}>
-          <Link to="/artists">Artists</Link>
+          <NavLink to="/artists">Artists</NavLink>
         </li>
       </ul>
     </nav>
