@@ -5,16 +5,14 @@ import { Artists } from "routes/Artists";
 const App: FC = () => {
   return (
     <Router>
-      <div className="App">
-        <Switch>
-          <Route path="/artists">
-            <Artists />
-          </Route>
-          <Route path="/">
-            <h1>Homepage</h1>
-          </Route>
-        </Switch>
-      </div>
+      <Switch>
+        <Route path="/artists">
+          <Artists />
+        </Route>
+        <Route path="/">
+          <h1>Homepage</h1>
+        </Route>
+      </Switch>
     </Router>
   );
 };
