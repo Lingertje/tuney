@@ -1,0 +1,17 @@
+@use'src/css/config' as *;
+
+.navbar {
+    &__list {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__item {
+        a {
+            display: block;
+            padding: 16px;
+            color: $color-white;
+            text-decoration: none;
+        }
+    }
+}

@@ -1,5 +1,7 @@
 import { Layout } from "components/Layout";
 import { FC, useEffect, useState } from "react";
+import { Container } from "react-grid-system";
+
 import { Artist } from "types/Artist";
 
 const Artists: FC = () => {
@@ -29,16 +31,18 @@ const Artists: FC = () => {
 
   return (
     <Layout>
-      <h1>Artists</h1>
-      <input type="text" name="search" onChange={(e) => fetctArtistsBySearch(e.target.value)} />
-      <ul>
-        {
-          artists.map(artist => {
-            return <li key={artist.id}>{artist.name}</li>;
-          })
-        }
-      </ul>
-      <button onClick={() => setPageCount(pageCount + 1)}>Load more artists</button>
+      <Container>
+        <h1>Artists</h1>
+        <input type="text" name="search" onChange={(e) => fetctArtistsBySearch(e.target.value)} />
+        <ul>
+          {
+            artists.map(artist => {
+              return <li key={artist.id}>{artist.name}</li>;
+            })
+          }
+        </ul>
+        <button onClick={() => setPageCount(pageCount + 1)}>Load more artists</button>
+      </Container>
     </Layout>
   );
 };

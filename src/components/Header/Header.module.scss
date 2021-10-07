@@ -1,0 +1,18 @@
+.header {
+    position: relative;
+    height: 40vh;
+    background-image: linear-gradient(180deg, rgba(15,13,23,0.75) 75%, rgba(15,13,23,1) 100%),url(/assets/images/header.jpg); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background-position: center;
+    background-size: cover;
+
+    &__container {
+        height: 100%;
+    }
+
+    &__title {
+        position: absolute;
+        bottom: 40px;
+        font-size: 48px;
+        opacity: 0.6;
+    }
+}

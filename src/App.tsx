@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Artists } from "routes/Artists";
+import { Homepage } from "routes/Homepage";
 
 const App: FC = () => {
   return (
@@ -10,7 +11,7 @@ const App: FC = () => {
           <Artists />
         </Route>
         <Route path="/">
-          <h1>Homepage</h1>
+          <Homepage />
         </Route>
       </Switch>
     </Router>
