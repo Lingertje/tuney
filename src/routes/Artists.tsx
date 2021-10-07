@@ -1,3 +1,4 @@
+import { ArtistList } from "components/Artist/ArtistList";
 import { Layout } from "components/Layout";
 import { Searchbar } from "components/Searchbar";
 import { FC, useEffect, useState } from "react";
@@ -24,6 +25,11 @@ const Artists: FC = () => {
   };
 
   const fetctArtistsBySearch = async (query: string) => {
+    if (query === "") {
+      const artists = await fetctArtists();
+      return setArtists(artists);
+    }
+
     const response = await fetch(`http://localhost:8000/artists?q=${query}`);
     const data = await response.json();
 
@@ -38,17 +44,13 @@ const Artists: FC = () => {
             <Searchbar name="search" placeholder="Search artist..." callback={fetctArtistsBySearch} />
           </Col>
         </Row>
-        <ul>
-          {
-            artists.map(artist => {
-              return <li key={artist.id}>{artist.name}</li>;
-            })
-          }
-        </ul>
+        <Row>
+          <ArtistList artists={artists} />
+        </Row>
         <button onClick={() => setPageCount(pageCount + 1)}>Load more artists</button>
       </Container>
     </Layout>
   );
 };
 
-export { Artists };
+export default Artists;

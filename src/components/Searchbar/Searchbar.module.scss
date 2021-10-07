@@ -2,12 +2,18 @@
 
 .searchbar {
     width: 100%;
-    padding: 12px 8px;
+    padding: 12px 8px 4px;
     margin-bottom: 32px;
     color: $color-white;
     font-size: 36px;
     font-weight: 500;
     border: 0;
-    border-bottom: 2px solid $color-white;
+    border-bottom: 2px solid rgba($color-white, 0.4);
     background-color: transparent;
+    outline: none;
+    transition: border-color 200ms ease-out;
+
+    &:focus {
+        border-color: $color-white;
+    }
 }

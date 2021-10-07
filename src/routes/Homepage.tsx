@@ -12,4 +12,4 @@ const Homepage: FC = () => {
   );
 };
 
-export { Homepage };
+export default Homepage;
