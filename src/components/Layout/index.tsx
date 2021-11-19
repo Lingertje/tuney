@@ -8,19 +8,19 @@ interface LayoutProps {
 }
 
 const Layout: FC<LayoutProps> = ({ children }: LayoutProps) => {
-  return (
-    <div className="app">
-      <Header />
-      <main>
-        { children }
-      </main>
-      <footer>
-        <Container>
-          <h2>This is the footer</h2>
-        </Container>
-      </footer>
-    </div>
-  );
+    return (
+        <div className="app">
+            <Header />
+            <main>
+                { children }
+            </main>
+            <footer>
+                <Container>
+                    <h2>This is the footer</h2>
+                </Container>
+            </footer>
+        </div>
+    );
 };
 
 export { Layout };

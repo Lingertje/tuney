@@ -21,7 +21,7 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "indent": ["error", 2],
+        "indent": ["error", 4],
         "linebreak-style": ["error", "unix"],
         "quotes": ["error", "double"],
         "jsx-quotes": ["error", "prefer-double"],
