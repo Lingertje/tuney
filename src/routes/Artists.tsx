@@ -7,54 +7,42 @@ import { Searchbar } from "components/Searchbar";
 import axios from "utils/AxiosInstance";
 
 import { Artist } from "types/Artist";
+import useAxios from "hooks/useAxios";
 
 const Artists: FC = () => {
-    const [pageCount, setPageCount] = useState<number>(1);
-    const [artists, setArtists] = useState<Artist[]>([]);
+	const [pageCount, setPageCount] = useState<number>(1);
+	const [artists, setArtists] = useState<Artist[]>([]);
 
-    useEffect(() => {
-        fetctArtists()
-            .then(fetchedArtists => {
-                // setArtists([...artists, ...fetchedArtists]);
-            });
-    }, [pageCount]);
+	const { response, loading, error } = useAxios({
+		method: "GET",
+		url: "/movie/500"
+	});
 
-    const fetctArtists = async () => {
-        const response = await axios("/movie/550");
-        // const data : Artist[] = await response.json();
-        console.log(response);
+	if (loading) {
+		console.log(loading);
+	}
 
+	if (error) {
+		console.log(error);
+	}
 
-        return response;
-    };
+	console.log(response);
 
-    const fetctArtistsBySearch = async (query: string) => {
-        if (query === "") {
-            const artists = await fetctArtists();
-            // return setArtists(artists);
-        }
-
-        const response = await fetch(`http://localhost:8000/artists?q=${query}`);
-        const data = await response.json();
-
-        setArtists(data);
-    };
-
-    return (
-        <Layout>
-            <Container>
-                <Row>
-                    <Col xs={12}>
-                        <Searchbar name="search" placeholder="Search artist..." callback={fetctArtistsBySearch} />
-                    </Col>
-                </Row>
-                <Row>
-                    <ArtistList artists={artists} />
-                </Row>
-                <button onClick={() => setPageCount(pageCount + 1)}>Load more artists</button>
-            </Container>
-        </Layout>
-    );
+	return (
+		<Layout>
+			<Container>
+				<Row>
+					<Col xs={12}>
+						{/* <Searchbar name="search" placeholder="Search artist..." callback={fetctArtistsBySearch} /> */}
+					</Col>
+				</Row>
+				<Row>
+					<ArtistList artists={artists} />
+				</Row>
+				<button onClick={() => setPageCount(pageCount + 1)}>Load more artists</button>
+			</Container>
+		</Layout>
+	);
 };
 
 export default Artists;

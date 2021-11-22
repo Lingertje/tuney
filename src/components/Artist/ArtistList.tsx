@@ -9,19 +9,19 @@ type ArtistListProps = {
 }
 
 const ArtistList: FC<ArtistListProps> = ({ artists }: ArtistListProps) => {
-    return (
-        <Col xs={12} component="ul" className="reset-list">
-            {
-                artists.map(artist => {
-                    return (
-                        <li key={artist.id}>
-                            <Link to={`/artist/${artist.name}`}>{artist.name}</Link>
-                        </li>
-                    );
-                })
-            }
-        </Col>
-    );
+	return (
+		<Col xs={12} component="ul" className="reset-list">
+			{
+				artists.map(artist => {
+					return (
+						<li key={artist.id}>
+							<Link to={`/artist/${artist.name}`}>{artist.name}</Link>
+						</li>
+					);
+				})
+			}
+		</Col>
+	);
 };
 
 export { ArtistList };
