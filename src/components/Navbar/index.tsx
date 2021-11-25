@@ -11,7 +11,7 @@ const Navbar: FC = () => {
 					<NavLink to="/" exact>Homepage</NavLink>
 				</li>
 				<li className={styles["navbar__item"]}>
-					<NavLink to="/artist" exact>Artists</NavLink>
+					<NavLink to="/movies" exact>Movies</NavLink>
 				</li>
 			</ul>
 		</nav>

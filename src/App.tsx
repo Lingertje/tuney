@@ -1,7 +1,7 @@
 import { FC, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-const Artists = lazy(() => import("routes/Artists"));
+const Movies = lazy(() => import("routes/Movies"));
 const Homepage = lazy(() => import("routes/Homepage"));
 
 const App: FC = () => {
@@ -10,7 +10,7 @@ const App: FC = () => {
 			<Suspense fallback={<div>Loading...</div>}>
 				<Switch>
 					<Route path="/movies">
-						<Artists />
+						<Movies />
 					</Route>
 					<Route path="/">
 						<Homepage />
