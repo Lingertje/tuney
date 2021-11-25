@@ -2,6 +2,7 @@ import { FC, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const Movies = lazy(() => import("routes/Movies"));
+const Series = lazy(() => import("routes/Series"));
 const Homepage = lazy(() => import("routes/Homepage"));
 
 const App: FC = () => {
@@ -11,6 +12,9 @@ const App: FC = () => {
 				<Switch>
 					<Route path="/movies">
 						<Movies />
+					</Route>
+					<Route path="/series">
+						<Series />
 					</Route>
 					<Route path="/">
 						<Homepage />

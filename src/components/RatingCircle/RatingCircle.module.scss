@@ -1,0 +1,31 @@
+.rating-circle {
+    width: 48px;
+    height: 48px;
+
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    &__text {
+        fill: #fff;
+        font-size: 10px;
+        font-weight: 500;
+    }
+
+    &__percentage {
+        fill: rgba(#000, 0.5);
+    }
+
+    &--green {
+        stroke: rgba(#21d07a, 0.7);
+    }
+
+    &--orange {
+        stroke: rgba(#d2d531, 0.7);
+    }
+
+    &--red {
+        stroke: rgba(#db2360, 0.7);
+    }
+
+}

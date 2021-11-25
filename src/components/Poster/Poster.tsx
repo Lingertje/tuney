@@ -5,12 +5,15 @@ import { Link } from "react-router-dom";
 import { Movie } from "types/Movie";
 import ComposeImageUrl from "utils/ComposeImageUrl";
 import styles from "./Poster.module.scss";
+import { RatingCircle } from "components/RatingCircle/RatingCircle";
 
 type PosterProps = {
 	movie: Movie
 }
 
 const Poster: FC<PosterProps> = ({ movie }: PosterProps) => {
+	const circlePercentage = movie.vote_average * 10;
+
 	return (
 		<Col xs={12} md={6} lg={3} component="li" key={movie.id}>
 			<div className={styles["poster"]}>
@@ -27,7 +30,7 @@ const Poster: FC<PosterProps> = ({ movie }: PosterProps) => {
 							}
 						)}</span>
 					</div> */}
-					<span className={styles["poster__rating"]}>{movie.vote_average * 10}</span>
+					{ circlePercentage > 0 ? <RatingCircle ratingPercentage={movie.vote_average * 10} /> : "" }
 				</Link>
 			</div>
 		</Col>
