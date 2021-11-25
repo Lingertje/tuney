@@ -12,5 +12,6 @@ export type Movie = {
     release_date: string,
     video: boolean,
     vote_average: number,
-    vote_count: number
+    vote_count: number,
+    name: string
 }
