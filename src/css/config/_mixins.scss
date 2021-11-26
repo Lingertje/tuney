@@ -1,0 +1,18 @@
+@use "./variables" as *;
+
+@mixin media-query($bp, $type: min) {
+    @if map_has_key($breakpoints, $bp) {
+        $bp: map_get($breakpoints, $bp);
+        @if $type == max {
+            $bp: $bp - 1px;
+        }
+        @media screen and (#{$type}-width: #{$bp}px) {
+            @content;
+        }
+    }
+
+    // Informative error handling when invalid $width value is provided
+    @else {
+        @warn 'There is no item "#{$bp}" in this list; choose one of: #{map-keys($breakpoints)}';
+    }
+}

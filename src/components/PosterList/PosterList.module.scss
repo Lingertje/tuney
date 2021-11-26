@@ -1,6 +1,16 @@
+@use '../../css/config' as *;
+@use "sass:map";
+
 .poster-list {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    padding: 0;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    padding: 0 15px;
+
+    @each $bp, $width in $container-width {
+        @include media-query($bp) {
+            padding-left: calc(50% - 0.5*#{$width}px + 15px);
+        }
+    }
 }

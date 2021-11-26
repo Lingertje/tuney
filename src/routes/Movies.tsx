@@ -22,16 +22,16 @@ const Movies: FC = () => {
 
 	return (
 		<Layout>
-			<Container>
-				<Row>
-					<Col xs={12}>
-						{/* <Searchbar name="search" placeholder="Search artist..." callback={fetctArtistsBySearch} /> */}
-					</Col>
-				</Row>
-				<Row>
-					<PosterList movies={response?.results} />
-				</Row>
-			</Container>
+			<section>
+				<Container>
+					<Row>
+						<Col xs={12}>
+							{/* <Searchbar name="search" placeholder="Search artist..." callback={fetctArtistsBySearch} /> */}
+						</Col>
+					</Row>
+				</Container>
+			</section>
+			<PosterList movies={response?.results} />
 		</Layout>
 	);
 };

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Col } from "react-grid-system";
+import { Col, Container, Row } from "react-grid-system";
 
 import { Movie } from "types/Movie";
 import { Poster } from "components/Poster/Poster";
@@ -12,9 +12,13 @@ type PosterListProps = {
 const PosterList: FC<PosterListProps> = ({ movies }: PosterListProps) => {
 
 	return (
-		<>
-			<Col xs={12} component="h2">Populair</Col>
-			<ul className={`reset-list ${styles["poster-list"]}`}>
+		<section>
+			<Container>
+				<Row>
+					<Col xs={12} component="h2">Populair</Col>
+				</Row>
+			</Container>
+			<Row component="ul" className={`reset-list ${styles["poster-list"]}`}>
 				{
 					movies.map(movie => {
 						return (
@@ -22,8 +26,8 @@ const PosterList: FC<PosterListProps> = ({ movies }: PosterListProps) => {
 						);
 					})
 				}
-			</ul>
-		</>
+			</Row>
+		</section>
 	);
 };
 
