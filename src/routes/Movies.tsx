@@ -7,19 +7,6 @@ import { PosterList } from "components/PosterList/PosterList";
 import useAxios from "hooks/useAxios";
 
 const Movies: FC = () => {
-	const { response, loading, error } = useAxios({
-		method: "GET",
-		url: "/movie/popular"
-	});
-
-	if (loading) {
-		return (<h1>loading</h1>);
-	}
-
-	if (error) {
-		return (<h1>error</h1>);
-	}
-
 	return (
 		<Layout>
 			<section>
@@ -31,7 +18,8 @@ const Movies: FC = () => {
 					</Row>
 				</Container>
 			</section>
-			<PosterList movies={response?.results} />
+			<PosterList title="Popular" category="movie" genre="popular" />
+			<PosterList title="Top rated" category="movie" genre="top_rated" />
 		</Layout>
 	);
 };

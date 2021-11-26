@@ -17,7 +17,7 @@ const Poster: FC<PosterProps> = ({ movie }: PosterProps) => {
 	const slug = `${movie.id}-${title.toLowerCase().split(" ").join("-")}`;
 
 	return (
-		<Col xs={12} sm={6} md={6} lg={3} component="li" key={movie.id}>
+		<Col xs={10} sm={4} xl={3} component="li" key={movie.id}>
 			<div className={styles["poster"]}>
 				<Link to={`/movie/${slug}`}>
 					<img src={ComposeImageUrl(movie.poster_path, "w500")} className={styles["poster__image"]} />
