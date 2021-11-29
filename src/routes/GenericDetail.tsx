@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useParams } from "react-router";
+import { Helmet } from "react-helmet";
 
 import { Layout } from "components/Layout";
 import { Container } from "react-grid-system";
@@ -27,11 +28,11 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 		return (<h1>error</h1>);
 	}
 
-	console.log(response);
-
-
 	return (
-		<Layout headerTitle={response?.title} bgImageUrl={ComposeImageUrl(response?.backdrop_path)}>
+		<Layout headerTitle={response?.title || response?.name} bgImageUrl={ComposeImageUrl(response?.backdrop_path)}>
+			<Helmet>
+				<title>Tuney - {response?.title || response?.name}</title>
+			</Helmet>
 			<section>
 				<Container>
 					<h2>Detail page</h2>
