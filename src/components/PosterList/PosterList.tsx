@@ -31,16 +31,16 @@ const PosterList: FC<PosterListProps> = ({ title, genre, category }: PosterListP
 	}
 
 	return (
-		<section>
+		<section className={styles["poster-list__wrapper"]}>
 			<Container>
 				<Row>
-					<Col xs={12} component="h2">{title}</Col>
+					<Col xs={12} component="h2" className={styles["poster-list__title"]}>{title}</Col>
 				</Row>
 			</Container>
 			<Row>
 				<ul className={`reset-list ${styles["poster-list"]}`} ref={posterRow}>
 					{loading ?
-						<PosterSkeleton />
+						<PosterSkeleton amount={10} />
 						:
 						movies?.map(movie => {
 							return (

@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { Col } from "react-grid-system";
 import { Link } from "react-router-dom";
 
 import { Movie } from "types/Movie";
@@ -21,7 +20,7 @@ const Poster: FC<PosterProps> = ({ movie, category }: PosterProps) => {
 		<li key={movie.id}>
 			<div className={styles["poster"]}>
 				<Link to={`/${category}/${slug}`}>
-					<img src={ComposeImageUrl(movie.poster_path, "w500")} className={styles["poster__image"]} />
+					<img src={ComposeImageUrl(movie.poster_path, "w300")} className={styles["poster__image"]} alt={`${title} movie poster`} />
 					{ circlePercentage > 0 ? <RatingCircle ratingPercentage={movie.vote_average * 10} /> : "" }
 				</Link>
 			</div>
