@@ -11,6 +11,7 @@ body {
   margin: 0;
   color: $color-white;
   background-color: $color-primary;
+  overflow-x: hidden;
   font-family: 'Avenir Next',Arial,sans-serif;
   font-size: 18px;
   -webkit-font-smoothing: antialiased;

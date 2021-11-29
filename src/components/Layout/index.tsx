@@ -4,13 +4,15 @@ import { Header } from "components/Header";
 import { Container } from "react-grid-system";
 
 interface LayoutProps {
-  children: ReactNode
+  children: ReactNode,
+  headerTitle?: string,
+  bgImageUrl?: string
 }
 
-const Layout: FC<LayoutProps> = ({ children }: LayoutProps) => {
+const Layout: FC<LayoutProps> = ({ children, bgImageUrl, headerTitle }: LayoutProps) => {
 	return (
 		<div className="app">
-			<Header />
+			<Header bgImageUrl={bgImageUrl} title={headerTitle} />
 			<main>
 				{ children }
 			</main>

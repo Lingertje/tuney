@@ -8,10 +8,11 @@ import styles from "./Poster.module.scss";
 import { RatingCircle } from "components/RatingCircle/RatingCircle";
 
 type PosterProps = {
-	movie: Movie
+	movie: Movie,
+	category?: "movie" | "tv"
 }
 
-const Poster: FC<PosterProps> = ({ movie }: PosterProps) => {
+const Poster: FC<PosterProps> = ({ movie, category }: PosterProps) => {
 	const circlePercentage = movie.vote_average * 10;
 	const title = movie.title || movie.name;
 	const slug = `${movie.id}-${title.toLowerCase().split(" ").join("-")}`;
@@ -19,19 +20,8 @@ const Poster: FC<PosterProps> = ({ movie }: PosterProps) => {
 	return (
 		<Col xs={10} sm={4} xl={3} component="li" key={movie.id}>
 			<div className={styles["poster"]}>
-				<Link to={`/movie/${slug}`}>
+				<Link to={`/${category}/${slug}`}>
 					<img src={ComposeImageUrl(movie.poster_path, "w500")} className={styles["poster__image"]} />
-					{/* <div className={styles["poster__content"]}>
-						<h2>{movie.title}</h2>
-						<span>{new Date(movie.release_date).toLocaleDateString(
-							"nl-NL",
-							{
-								year: "numeric",
-								month: "long",
-								day: "numeric"
-							}
-						)}</span>
-					</div> */}
 					{ circlePercentage > 0 ? <RatingCircle ratingPercentage={movie.vote_average * 10} /> : "" }
 				</Link>
 			</div>

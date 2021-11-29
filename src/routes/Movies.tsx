@@ -4,7 +4,6 @@ import { Container, Row, Col } from "react-grid-system";
 import { Layout } from "components/Layout";
 import { PosterList } from "components/PosterList/PosterList";
 
-import useAxios from "hooks/useAxios";
 
 const Movies: FC = () => {
 	return (

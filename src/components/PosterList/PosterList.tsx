@@ -43,7 +43,7 @@ const PosterList: FC<PosterListProps> = ({ title, genre, category }: PosterListP
 				{
 					movies?.map(movie => {
 						return (
-							<Poster key={movie.id} movie={movie} />
+							<Poster key={movie.id} movie={movie} category={category} />
 						);
 					})
 				}
