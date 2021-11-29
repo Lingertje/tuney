@@ -16,6 +16,7 @@
 
     &__percentage {
         fill: rgba(#000, 0.5);
+        animation: progress 500ms ease-out forwards 150ms;
     }
 
     &--green {
@@ -30,4 +31,10 @@
         stroke: rgba($color-error, 0.7);
     }
 
+}
+
+@keyframes progress {
+    0% {
+        stroke-dasharray: 0 100;
+    }
 }
