@@ -1,10 +1,11 @@
 import { FC } from "react";
 import { useParams } from "react-router";
 import { Helmet } from "react-helmet";
+import { useQuery } from "react-query";
 
+import axios from "utils/AxiosInstance";
 import { Layout } from "components/Layout";
-import { Container } from "react-grid-system";
-import useAxios from "hooks/useAxios";
+import { Container, Row, Col } from "react-grid-system";
 import ComposeImageUrl from "utils/ComposeImageUrl";
 
 type GenericDetailProps = {
@@ -15,12 +16,12 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 	const { slug } : { slug: string} = useParams();
 	const id = slug.slice(0, slug.indexOf("-"));
 
-	const { response, loading, error } = useAxios({
-		method: "GET",
-		url: `/${category}/${id}`
+	const { isLoading, error, data: {data} = {} } = useQuery(`${category}-${id}`, () => {
+		return axios.get(`/${category}/${id}`);
 	});
 
-	if (loading) {
+
+	if (isLoading) {
 		return (<h1>loading</h1>);
 	}
 
@@ -28,14 +29,20 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 		return (<h1>error</h1>);
 	}
 
+	console.log(data);
+
+
 	return (
-		<Layout headerTitle={response?.title || response?.name} bgImageUrl={ComposeImageUrl(response?.backdrop_path)}>
+		<Layout headerTitle={data?.title || data?.name} bgImageUrl={ComposeImageUrl(data?.backdrop_path)}>
 			<Helmet>
-				<title>Tuney - {response?.title || response?.name}</title>
+				<title>Tuney - {data?.title || data?.name}</title>
 			</Helmet>
 			<section>
 				<Container>
-					<h2>Detail page</h2>
+					<Row>
+						<Col xs={12} component="h2">Detail page</Col>
+						<p>{data?.overview}</p>
+					</Row>
 				</Container>
 			</section>
 		</Layout>

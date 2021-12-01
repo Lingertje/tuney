@@ -1,11 +1,12 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-grid-system";
+import { useQuery } from "react-query";
 
+import axios from "utils/AxiosInstance";
 import { Movie } from "types/Movie";
 import { Poster } from "components/Poster/Poster";
 import { PosterSkeleton } from "components/Poster/PosterSkeleton";
 import styles from "./PosterList.module.scss";
-import useAxios from "hooks/useAxios";
 
 type PosterListProps = {
 	title: string
@@ -17,14 +18,13 @@ const PosterList: FC<PosterListProps> = ({ title, genre, category }: PosterListP
 	const [movies, setMovies] = useState<Movie[] | null>(null);
 	const posterRow = useRef<HTMLUListElement>(null);
 
-	const { response, loading, error } = useAxios({
-		method: "GET",
-		url: `/${category}/${genre}`
+	const { isLoading, error, data: {data} = {} } = useQuery(`${category}-${genre}`, () => {
+		return axios.get(`/${category}/${genre}`);
 	});
 
 	useEffect(() => {
-		setMovies(response?.results);
-	}, [response]);
+		setMovies(data?.results);
+	}, [data]);
 
 	if (error) {
 		return (<h1>error</h1>);
@@ -39,7 +39,7 @@ const PosterList: FC<PosterListProps> = ({ title, genre, category }: PosterListP
 			</Container>
 			<Row>
 				<ul className={`reset-list ${styles["poster-list"]}`} ref={posterRow}>
-					{loading ?
+					{isLoading ?
 						<PosterSkeleton amount={10} />
 						:
 						movies?.map(movie => {

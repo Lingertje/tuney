@@ -1,6 +1,5 @@
 import { Layout } from "components/Layout";
 import { FC } from "react";
-import { Container } from "react-grid-system";
 
 import { PosterList } from "components/PosterList/PosterList";
 
