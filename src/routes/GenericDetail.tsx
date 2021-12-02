@@ -11,6 +11,7 @@ import { CastList } from "components/Cast/CastList";
 import { PosterList } from "components/PosterList/PosterList";
 import { GenreList } from "components/Genre/GenreList";
 import { getYear } from "utils/Date";
+import { Video } from "types/Video";
 
 type GenericDetailProps = {
 	category: "movie" | "tv"
@@ -21,7 +22,7 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 	const id = slug.slice(0, slug.indexOf("-"));
 
 	const { isLoading, error, data: {data} = {} } = useQuery(`${category}-${id}`, () => {
-		return axios.get(`/${category}/${id}`);
+		return axios.get(`/${category}/${id}?language=en&append_to_response=videos`);
 	});
 
 
@@ -32,6 +33,14 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 	if (error) {
 		return (<h1>error</h1>);
 	}
+
+	const getTrailerUrl = (videos: Video[]): string => {
+		const trailers = videos?.filter((videos: Video) => {
+			return videos.type === "Trailer";
+		});
+
+		return trailers[0].key;
+	};
 
 	return (
 		<Layout headerTitle={`${data?.title || data?.name} (${getYear(data?.release_date || data?.first_air_date)})`} bgImageUrl={ComposeImageUrl(data?.backdrop_path, "w1280")}>
@@ -50,6 +59,14 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 							<p style={{fontSize: "22px", lineHeight: 1.2, letterSpacing: "0.2px"}}>{data?.overview}</p>
 						</Col>
 					</Row>
+					{
+						data?.videos &&
+						<Row>
+							<Col xs={12} lg={8}>
+								<iframe src={`https://www.youtube.com/embed/${getTrailerUrl(data?.videos?.results)}`} style={{width: "100%", height: "400px", border: 0}}></iframe>
+							</Col>
+						</Row>
+					}
 				</Container>
 			</section>
 			<CastList category={category} id={id} />
