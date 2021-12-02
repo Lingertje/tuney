@@ -18,6 +18,7 @@ const Series: FC = () => {
 			</section>
 			<PosterList title="Popular" category="tv" genre="popular" />
 			<PosterList title="Top rated" category="tv" genre="top_rated" />
+			<PosterList title="On the air" category="tv" genre="on_the_air" />
 		</Layout>
 	);
 };

@@ -19,6 +19,7 @@ const Movies: FC = () => {
 			</section>
 			<PosterList title="Popular" category="movie" genre="popular" />
 			<PosterList title="Top rated" category="movie" genre="top_rated" />
+			<PosterList title="Now playing" category="movie" genre="now_playing" />
 		</Layout>
 	);
 };
