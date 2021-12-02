@@ -2,7 +2,7 @@
 
 .poster {
     position: relative;
-    width: 300px;
+    width: 200px;
     margin: 16px 30px 16px 0;
     border-radius: 6px;
     overflow: hidden;
@@ -16,7 +16,7 @@
 
     &__image {
         width: 100%;
-        height: 450px;
+        height: 300px;
         vertical-align: bottom;
     }
 
@@ -70,6 +70,14 @@
     &:focus-within {
         transform: scale(1.05);
         z-index: 100;
+    }
+
+    @include media-query(md) {
+        width: 300px;
+
+        &__image {
+            height: 450px;
+        }
     }
 }
 
