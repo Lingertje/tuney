@@ -39,6 +39,10 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 			return videos.type === "Trailer";
 		});
 
+		if (!trailers.length) {
+			return videos[0].key;
+		}
+
 		return trailers[0].key;
 	};
 
@@ -60,12 +64,12 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 						</Col>
 					</Row>
 					{
-						data?.videos &&
-						<Row>
-							<Col xs={12} lg={8}>
-								<iframe src={`https://www.youtube.com/embed/${getTrailerUrl(data?.videos?.results)}`} style={{width: "100%", height: "400px", border: 0}}></iframe>
-							</Col>
-						</Row>
+						data?.videos?.results.length ?
+							<Row>
+								<Col xs={12} lg={8}>
+									<iframe src={`https://www.youtube.com/embed/${getTrailerUrl(data?.videos?.results)}`} style={{width: "100%", height: "400px", border: 0}}></iframe>
+								</Col>
+							</Row> : ""
 					}
 				</Container>
 			</section>

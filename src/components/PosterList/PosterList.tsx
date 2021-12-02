@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-grid-system";
-import { useQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 
 import axios from "utils/AxiosInstance";
 import { Movie } from "types/Movie";
@@ -15,16 +15,40 @@ type PosterListProps = {
 }
 
 const PosterList: FC<PosterListProps> = ({ title, genre, category }: PosterListProps) => {
-	const [movies, setMovies] = useState<Movie[] | null>(null);
+	const [queryPages, setQueryPages] = useState<any>(null);
+	// const [movies, setMovies] = useState<Movie[] | null>(null);
 	const posterRow = useRef<HTMLUListElement>(null);
 
-	const { isLoading, error, data: {data} = {} } = useQuery(`${category}-${genre}`, () => {
-		return axios.get(`/${category}/${genre}`);
+	const {
+		isLoading,
+		error,
+		data: { pages } = {},
+		fetchNextPage
+	} = useInfiniteQuery(`${category}-${genre}`, async ({pageParam = 1}) => {
+		const { data } = await axios.get(`/${category}/${genre}?page=${pageParam}`);
+		return data;
+	}, {
+		getNextPageParam: (lastPage) => lastPage.page += 1
 	});
 
 	useEffect(() => {
-		setMovies(data?.results);
-	}, [data]);
+		setQueryPages(pages);
+	}, [pages]);
+
+	useEffect(() => {
+		posterRow.current?.addEventListener("scroll", () => {
+			const currentRow = posterRow.current;
+
+			if (currentRow) {
+				const scrollRight = currentRow?.scrollWidth - currentRow?.scrollLeft;
+				const scrollTillEnd = scrollRight - window.innerWidth;
+
+				if (scrollTillEnd === 0) {
+					fetchNextPage();
+				}
+			}
+		});
+	}, [posterRow]);
 
 	if (error) {
 		return (<h1>error</h1>);
@@ -41,11 +65,15 @@ const PosterList: FC<PosterListProps> = ({ title, genre, category }: PosterListP
 				{isLoading ?
 					<PosterSkeleton amount={10} />
 					:
-					movies?.map(movie => {
-						return (
-							<Poster key={movie.id} movie={movie} category={category} />
-						);
-					})
+					queryPages?.map((page: any) => (
+						<>
+							{
+								page.results.map((movie: Movie) => (
+									<Poster key={movie.id} movie={movie} category={category} />
+								))
+							}
+						</>
+					))
 				}
 			</ul>
 		</section>
