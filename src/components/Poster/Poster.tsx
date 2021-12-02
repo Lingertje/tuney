@@ -5,6 +5,7 @@ import { Movie } from "types/Movie";
 import ComposeImageUrl from "utils/ComposeImageUrl";
 import { RatingCircle } from "components/RatingCircle/RatingCircle";
 import styles from "./Poster.module.scss";
+import { Svg } from "components/Svg/Svg";
 
 type PosterProps = {
 	movie: Movie,
@@ -16,6 +17,10 @@ const Poster: FC<PosterProps> = ({ movie, category }: PosterProps) => {
 	const title = movie.title || movie.name;
 	const slug = `${movie.id}-${title.toLowerCase().split(" ").join("-")}`;
 
+	const addToFavorites = () => {
+		console.log(`${title} added to favorites`);
+	};
+
 	return (
 		<li key={movie.id}>
 			<div className={styles["poster"]}>
@@ -23,6 +28,9 @@ const Poster: FC<PosterProps> = ({ movie, category }: PosterProps) => {
 					<img src={ComposeImageUrl(movie.poster_path, "w300")} className={styles["poster__image"]} alt={`${title} movie poster`} />
 					{ circlePercentage > 0 ? <RatingCircle ratingPercentage={movie.vote_average * 10} /> : "" }
 				</Link>
+				<span className={styles["poster__favorite"]} onClick={addToFavorites} title={`Add ${title} to favorites`}>
+					<Svg icon="heart" />
+				</span>
 			</div>
 		</li>
 	);

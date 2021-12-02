@@ -1,3 +1,5 @@
+@use '../../css/config' as *;
+
 .poster {
     position: relative;
     width: 300px;
@@ -29,6 +31,31 @@
         top: 8px;
         right: 8px;
         color: #fff;
+    }
+
+    &__favorite {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        border-radius: 50%;
+        line-height: 0;
+        z-index: 10;
+
+        &:hover {
+            // background-color: rgba(#fff, 0.4);
+
+            svg {
+                fill: $color-error;
+            }
+        }
+
+        svg {
+            width: 32px;
+            height: 32px;
+            fill: rgba(#fff, 0.4);
+            transform: translateY(2px);
+            transition: fill 250ms ease-out;
+        }
     }
 
     &::after {

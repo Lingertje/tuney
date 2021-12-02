@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { ReactComponent as Movie } from "assets/images/movie.svg";
+import { ReactComponent as Movie } from "assets/images/svg/movie.svg";
 import styles from "./Poster.module.scss";
 
 type PosterSkeletonProps = {
