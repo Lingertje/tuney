@@ -28,8 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "svg:svgo": "yarn svgo sprites",
-    "svg:svgstore": "yarn svgstore sprites/*.svg -o public/img/sprite.svg",
+    "svg:svgo": "yarn svgo src/assets/images/svg",
+    "svg:svgstore": "yarn svgstore src/assets/images/svg/*.svg -o public/img/sprite.svg",
     "svg": "run-s svg:*"
   },
   "eslintConfig": {

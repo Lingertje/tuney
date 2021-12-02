@@ -6,12 +6,17 @@ export type Movie = {
     overview: string,
     adult: boolean,
     backdrop_path: string,
-    genre_ids: number[],
+    genres: Genre[],
     popularity: number,
     poster_path: string,
     release_date: string,
     video: boolean,
     vote_average: number,
     vote_count: number,
+    name: string
+}
+
+export type Genre = {
+    id: number,
     name: string
 }

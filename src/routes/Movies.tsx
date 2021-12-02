@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Helmet } from "react-helmet";
 import { Container, Row, Col } from "react-grid-system";
 
 import { Layout } from "components/Layout";
@@ -8,6 +9,9 @@ import { PosterList } from "components/PosterList/PosterList";
 const Movies: FC = () => {
 	return (
 		<Layout>
+			<Helmet>
+				<title>Tuney - Movies</title>
+			</Helmet>
 			<section>
 				<Container>
 					<Row>

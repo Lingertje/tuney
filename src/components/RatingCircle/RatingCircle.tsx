@@ -26,7 +26,7 @@ const RatingCircle: FC<RatingCircleProps> = ({ ratingPercentage }: RatingCircleP
 				strokeWidth="3"
 				strokeDasharray={`${ratingPercentage}, 100`}
 			/>
-			<text className={styles["rating-circle__text"]} x="8" y="21.35">{`${ratingPercentage}%`}</text>
+			<text className={styles["rating-circle__text"]} x="8" y="21.35">{`${Math.round(ratingPercentage)}%`}</text>
 		</svg>
 	);
 };

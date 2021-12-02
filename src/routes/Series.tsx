@@ -3,10 +3,14 @@ import { Container, Row, Col } from "react-grid-system";
 
 import { Layout } from "components/Layout";
 import { PosterList } from "components/PosterList/PosterList";
+import { Helmet } from "react-helmet";
 
 const Series: FC = () => {
 	return (
 		<Layout>
+			<Helmet>
+				<title>Tuney - Series</title>
+			</Helmet>
 			<section>
 				<Container>
 					<Row>

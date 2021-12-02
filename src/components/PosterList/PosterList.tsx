@@ -37,19 +37,17 @@ const PosterList: FC<PosterListProps> = ({ title, genre, category }: PosterListP
 					<Col xs={12} component="h2" className={styles["poster-list__title"]}>{title}</Col>
 				</Row>
 			</Container>
-			<Row>
-				<ul className={`reset-list ${styles["poster-list"]}`} ref={posterRow}>
-					{isLoading ?
-						<PosterSkeleton amount={10} />
-						:
-						movies?.map(movie => {
-							return (
-								<Poster key={movie.id} movie={movie} category={category} />
-							);
-						})
-					}
-				</ul>
-			</Row>
+			<ul className={`reset-list ${styles["poster-list"]}`} ref={posterRow}>
+				{isLoading ?
+					<PosterSkeleton amount={10} />
+					:
+					movies?.map(movie => {
+						return (
+							<Poster key={movie.id} movie={movie} category={category} />
+						);
+					})
+				}
+			</ul>
 		</section>
 	);
 };
