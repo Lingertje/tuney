@@ -6,6 +6,7 @@ import axios from "utils/AxiosInstance";
 import styles from "components/Cast/Cast.module.scss";
 import { Cast } from "./Cast";
 import { Actor } from "types/Actor";
+import { CastSkeleton } from "./CastSkeleton";
 
 type CastListProps = {
 	category: string,
@@ -16,10 +17,6 @@ const CastList: FC<CastListProps> = ({category, id}: CastListProps) => {
 	const { isLoading, error, data: {data} = {} } = useQuery(`${category}-${id}-cast`, () => {
 		return axios.get(`/${category}/${id}/credits`);
 	});
-
-	if (isLoading) {
-		return (<h1>loading</h1>);
-	}
 
 	if (error) {
 		return (<h1>error</h1>);
@@ -34,11 +31,14 @@ const CastList: FC<CastListProps> = ({category, id}: CastListProps) => {
 			</Container>
 			<ul className={`reset-list ${styles["cast-list"]}`}>
 				{
-					data.cast.map((actor: Actor) => {
-						return (
-							<Cast key={actor.id} actor={actor} />
-						);
-					})
+					isLoading ?
+						<CastSkeleton amount={5} />
+						:
+						data.cast.map((actor: Actor) => {
+							return (
+								<Cast key={actor.id} actor={actor} />
+							);
+						})
 				}
 			</ul>
 		</section>

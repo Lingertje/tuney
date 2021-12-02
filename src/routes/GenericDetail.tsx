@@ -34,7 +34,7 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 	}
 
 	return (
-		<Layout headerTitle={`${data?.title || data?.name} (${getYear(data?.release_date || data?.first_air_date)})`} bgImageUrl={ComposeImageUrl(data?.backdrop_path)}>
+		<Layout headerTitle={`${data?.title || data?.name} (${getYear(data?.release_date || data?.first_air_date)})`} bgImageUrl={ComposeImageUrl(data?.backdrop_path, "w1280")}>
 			<Helmet>
 				<title>{`Tuney - ${data?.title || data?.name}`}</title>
 			</Helmet>

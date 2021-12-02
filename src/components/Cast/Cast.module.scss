@@ -12,6 +12,11 @@
     outline: none;
     transition: transform 200ms ease-out;
 
+    img {
+        width: 200px;
+        height: 300px;
+    }
+
     &__body {
         position: absolute;
         bottom: 0;
@@ -63,5 +68,36 @@
         @include media-query($bp) {
             padding-left: calc(50% - 0.5*#{$width}px + 15px);
         }
+    }
+}
+
+.cast-skeleton {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    margin: 15px 30px 15px 0;
+    border-radius: 4px;
+    background-color: rgba(#000, 0.2);
+    flex-shrink: 0;
+
+    svg {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        fill: rgba(#fff, 0.08);
+        animation: rotating 1.2s ease-out infinite;
+    }
+}
+
+@keyframes rotating {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
     }
 }

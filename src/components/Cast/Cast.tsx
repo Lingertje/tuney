@@ -10,7 +10,7 @@ type CastProps = {
 
 const Cast: FC<CastProps> = ({ actor }: CastProps) => {
 	return (
-		<li className={styles["cast-card"]} tabIndex={1}>
+		<li className={styles["cast-card"]} tabIndex={0}>
 			{actor.profile_path && <img src={ComposeImageUrl(actor.profile_path, "w200")} alt={`Photo of ${actor.name}`} />}
 			<div className={styles["cast-card__body"]}>
 				<span className={styles["cast-card__name"]}>{actor.name}</span>
