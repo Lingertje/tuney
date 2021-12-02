@@ -14,8 +14,15 @@ type PosterListProps = {
 	category: "movie" | "tv"
 }
 
+type QueryPage = {
+	page: number,
+	results: Movie[],
+	total_pages: number,
+	total_results: number
+}
+
 const PosterList: FC<PosterListProps> = ({ title, genre, category }: PosterListProps) => {
-	const [queryPages, setQueryPages] = useState<any>(null);
+	const [queryPages, setQueryPages] = useState<QueryPage[]>([]);
 	// const [movies, setMovies] = useState<Movie[] | null>(null);
 	const posterRow = useRef<HTMLUListElement>(null);
 
@@ -32,7 +39,10 @@ const PosterList: FC<PosterListProps> = ({ title, genre, category }: PosterListP
 	});
 
 	useEffect(() => {
-		setQueryPages(pages);
+		if (pages) {
+			setQueryPages(pages);
+		}
+
 	}, [pages]);
 
 	useEffect(() => {
@@ -65,7 +75,7 @@ const PosterList: FC<PosterListProps> = ({ title, genre, category }: PosterListP
 				{isLoading ?
 					<PosterSkeleton amount={10} />
 					:
-					queryPages?.map((page: any) => (
+					queryPages?.map((page: QueryPage) => (
 						<>
 							{
 								page.results.map((movie: Movie) => (
