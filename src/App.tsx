@@ -6,6 +6,7 @@ const Movies = lazy(() => import("routes/Movies"));
 const Series = lazy(() => import("routes/Series"));
 const Homepage = lazy(() => import("routes/Homepage"));
 const GenericDetail = lazy(() => import("routes/GenericDetail"));
+const Favorites = lazy(() => import("routes/Favorites"));
 
 const App: FC = () => {
 	return (
@@ -24,6 +25,9 @@ const App: FC = () => {
 						</Route>
 						<Route path="/series">
 							<Series />
+						</Route>
+						<Route path="/favorites">
+							<Favorites />
 						</Route>
 						<Route path="/">
 							<Homepage />

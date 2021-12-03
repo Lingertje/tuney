@@ -16,6 +16,9 @@ const Navbar: FC = () => {
 				<li className={styles["navbar__item"]}>
 					<NavLink to="/series" exact>Series</NavLink>
 				</li>
+				<li className={styles["navbar__item"]}>
+					<NavLink to="/favorites" exact>Favorites</NavLink>
+				</li>
 			</ul>
 		</nav>
 	);

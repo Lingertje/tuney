@@ -6,6 +6,7 @@ import ComposeImageUrl from "utils/ComposeImageUrl";
 import { RatingCircle } from "components/RatingCircle/RatingCircle";
 import styles from "./Poster.module.scss";
 import { Svg } from "components/Svg/Svg";
+import { saveToLocalStorage } from "utils/LocalStorageAPI";
 
 type PosterProps = {
 	movie: Movie,
@@ -18,7 +19,7 @@ const Poster: FC<PosterProps> = ({ movie, category }: PosterProps) => {
 	const slug = `${movie.id}-${title.toLowerCase().split(" ").join("-")}`;
 
 	const addToFavorites = () => {
-		console.log(`${title} added to favorites`);
+		saveToLocalStorage(movie);
 	};
 
 	return (
