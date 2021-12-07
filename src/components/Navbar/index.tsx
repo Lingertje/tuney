@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 
+import { Svg } from "components/Svg/Svg";
 import styles from "./Navbar.module.scss";
 
 const Navbar: FC = () => {
@@ -8,7 +9,7 @@ const Navbar: FC = () => {
 		<nav className={styles["navbar"]}>
 			<ul className={`${styles["navbar__list"]} reset-list`}>
 				<li className={styles["navbar__item"]}>
-					<NavLink to="/" exact>Homepage</NavLink>
+					<NavLink to="/" exact>Home</NavLink>
 				</li>
 				<li className={styles["navbar__item"]}>
 					<NavLink to="/movies" exact>Movies</NavLink>
@@ -18,6 +19,9 @@ const Navbar: FC = () => {
 				</li>
 				<li className={styles["navbar__item"]}>
 					<NavLink to="/favorites" exact>Favorites</NavLink>
+				</li>
+				<li className={styles["navbar__item"]}>
+					<NavLink to="/search" exact><Svg icon="search" /></NavLink>
 				</li>
 			</ul>
 		</nav>

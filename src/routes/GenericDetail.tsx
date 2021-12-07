@@ -46,6 +46,8 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 		return trailers[0].key;
 	};
 
+	console.log(data?.seasons);
+
 	return (
 		<Layout headerTitle={`${data?.title || data?.name} (${getYear(data?.release_date || data?.first_air_date)})`} bgImageUrl={ComposeImageUrl(data?.backdrop_path, "w1280")}>
 			<Helmet>
@@ -70,6 +72,17 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 									<iframe src={`https://www.youtube.com/embed/${getTrailerUrl(data?.videos?.results)}`} style={{width: "100%", height: "400px", border: 0}}></iframe>
 								</Col>
 							</Row> : ""
+					}
+					{
+						data?.seasons ?
+							<Row component="ul">
+								{
+									data?.seasons?.map((season: any) => (
+										<Col xs={12} lg={8} component="li" key={season.id}>{`${data?.title || data?.name} - ${season.name}`}</Col>
+									))
+								}
+							</Row>
+							: ""
 					}
 				</Container>
 			</section>

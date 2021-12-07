@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import { ReactComponent as Movie } from "assets/images/svg/movie.svg";
 import styles from "./Poster.module.scss";
+import { Svg } from "components/Svg/Svg";
 
 type PosterSkeletonProps = {
 	amount: number
@@ -14,7 +14,7 @@ const PosterSkeleton: FC<PosterSkeletonProps> = ({ amount }: PosterSkeletonProps
 				[...Array(amount)].map((el, i) => {
 					return (
 						<li key={i} className={styles["poster-skeleton"]}>
-							<Movie />
+							<Svg icon="movie" />
 						</li>
 					);
 				})

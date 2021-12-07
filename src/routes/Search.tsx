@@ -20,8 +20,6 @@ const Search: FC = () => {
 		setQuery(searchQuery);
 	};
 
-
-
 	if (error) {
 		return (<h1>error</h1>);
 	}
