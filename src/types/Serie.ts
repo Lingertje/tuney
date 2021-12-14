@@ -12,8 +12,19 @@ export type Serie = {
     number_of_seasons: number,
     popularity: number,
     poster_path: string,
+    seasons: Season[],
     status: string,
     tagline: string,
     vote_average: number,
     vote_count: number
+}
+
+export type Season = {
+    id: number,
+    air_date: string,
+    episode_count: number,
+    name: string,
+    overview: string,
+    poster_path: string,
+    season_number: number
 }

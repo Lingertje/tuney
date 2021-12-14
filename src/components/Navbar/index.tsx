@@ -9,19 +9,19 @@ const Navbar: FC = () => {
 		<nav className={styles["navbar"]}>
 			<ul className={`${styles["navbar__list"]} reset-list`}>
 				<li className={styles["navbar__item"]}>
-					<NavLink to="/" exact>Home</NavLink>
+					<NavLink to="/">Home</NavLink>
 				</li>
 				<li className={styles["navbar__item"]}>
-					<NavLink to="/movies" exact>Movies</NavLink>
+					<NavLink to="/movies">Movies</NavLink>
 				</li>
 				<li className={styles["navbar__item"]}>
-					<NavLink to="/series" exact>Series</NavLink>
+					<NavLink to="/series">Series</NavLink>
 				</li>
 				<li className={styles["navbar__item"]}>
-					<NavLink to="/favorites" exact>Favorites</NavLink>
+					<NavLink to="/favorites">Favorites</NavLink>
 				</li>
 				<li className={styles["navbar__item"]}>
-					<NavLink to="/search" exact><Svg icon="search" /></NavLink>
+					<NavLink to="/search"><Svg icon="search" /></NavLink>
 				</li>
 			</ul>
 		</nav>

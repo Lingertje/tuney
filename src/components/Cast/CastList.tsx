@@ -10,7 +10,7 @@ import { CastSkeleton } from "./CastSkeleton";
 
 type CastListProps = {
 	category: string,
-	id: string
+	id: string | undefined
 }
 
 const CastList: FC<CastListProps> = ({category, id}: CastListProps) => {

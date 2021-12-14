@@ -12,14 +12,15 @@ import { PosterList } from "components/PosterList/PosterList";
 import { GenreList } from "components/Genre/GenreList";
 import { getYear } from "utils/Date";
 import { Video } from "types/Video";
+import { SeasonList } from "components/SeasonList/SeasonList";
 
 type GenericDetailProps = {
 	category: "movie" | "tv"
 }
 
 const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps) => {
-	const { slug } : { slug: string} = useParams();
-	const id = slug.slice(0, slug.indexOf("-"));
+	const { slug } = useParams<{slug?: string}>();
+	const id = slug?.slice(0, slug?.indexOf("-"));
 
 	const { isLoading, error, data: {data} = {} } = useQuery(`${category}-${id}`, () => {
 		return axios.get(`/${category}/${id}?language=en&append_to_response=videos`);
@@ -75,13 +76,7 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 					}
 					{
 						data?.seasons ?
-							<Row component="ul">
-								{
-									data?.seasons?.map((season: any) => (
-										<Col xs={12} lg={8} component="li" key={season.id}>{`${data?.title || data?.name} - ${season.name}`}</Col>
-									))
-								}
-							</Row>
+							<SeasonList title={data?.name} seasons={data?.seasons} />
 							: ""
 					}
 				</Container>
