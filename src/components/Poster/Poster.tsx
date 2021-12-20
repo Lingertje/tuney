@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
 import { Movie } from "types/Movie";
