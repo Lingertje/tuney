@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, lazy, Suspense, useState } from "react";
 import { useParams } from "react-router";
 import { Helmet } from "react-helmet";
 import { useQuery } from "react-query";
@@ -13,6 +13,7 @@ import { GenreList } from "components/Genre/GenreList";
 import { getYear } from "utils/Date";
 import { Video } from "types/Video";
 import { SeasonList } from "components/SeasonList/SeasonList";
+const TrailerModal = lazy(() => import("components/Modals/TrailerModal"));
 
 type GenericDetailProps = {
 	category: "movie" | "tv"
@@ -21,6 +22,7 @@ type GenericDetailProps = {
 const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps) => {
 	const { slug } = useParams<{slug?: string}>();
 	const id = slug?.slice(0, slug?.indexOf("-"));
+	const [showModal, setShowModal] = useState<boolean>(false);
 
 	const { isLoading, error, data: {data} = {} } = useQuery(`${category}-${id}`, () => {
 		return axios.get(`/${category}/${id}?language=en&append_to_response=videos`);
@@ -47,6 +49,10 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 		return trailers[0].key;
 	};
 
+	const modalHandler = (() => {
+		setShowModal(showModal => !showModal);
+	});
+
 	console.log(data?.seasons);
 
 	return (
@@ -64,16 +70,9 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 					<Row>
 						<Col xs={12} lg={8}>
 							<p style={{fontSize: "22px", lineHeight: 1.2, letterSpacing: "0.2px"}}>{data?.overview}</p>
+							<button onClick={modalHandler}>Watch the trailer</button>
 						</Col>
 					</Row>
-					{
-						data?.videos?.results.length ?
-							<Row>
-								<Col xs={12} lg={8}>
-									<iframe src={`https://www.youtube.com/embed/${getTrailerUrl(data?.videos?.results)}`} style={{width: "100%", height: "400px", border: 0}}></iframe>
-								</Col>
-							</Row> : ""
-					}
 					{
 						data?.seasons ?
 							<SeasonList title={data?.name} seasons={data?.seasons} />
@@ -83,6 +82,9 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 			</section>
 			<CastList category={category} id={id} />
 			<PosterList title={`Similar ${category === "movie" ? "movies" : "series"}`} category={category} genre={`${id}/similar`} />
+			<Suspense fallback={<div>Loading...</div>}>
+				<TrailerModal trailerUrl={getTrailerUrl(data?.videos?.results)} showModal={showModal} callback={modalHandler} />
+			</Suspense>
 		</Layout>
 	);
 };
