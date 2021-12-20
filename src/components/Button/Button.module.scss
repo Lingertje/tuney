@@ -1,0 +1,30 @@
+@use '../../css/config' as *;
+
+.button {
+    background-color: transparent;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+
+    &--primary {
+        padding: 8px 16px;
+        color: #fff;
+        border: 2px solid #fff;
+        border-radius: 3px;
+        line-height: 1;
+        transition: all 200ms ease-out;
+
+        &:hover {
+            color: $color-primary;
+            background-color: #fff;
+        }
+    }
+
+    &--secondary {
+
+    }
+
+    &--ghost {
+
+    }
+}

@@ -13,6 +13,7 @@ import { GenreList } from "components/Genre/GenreList";
 import { getYear } from "utils/Date";
 import { Video } from "types/Video";
 import { SeasonList } from "components/SeasonList/SeasonList";
+import Button, { ButtonTypes } from "components/Button/Button";
 const TrailerModal = lazy(() => import("components/Modals/TrailerModal"));
 
 type GenericDetailProps = {
@@ -70,7 +71,9 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 					<Row>
 						<Col xs={12} lg={8}>
 							<p style={{fontSize: "22px", lineHeight: 1.2, letterSpacing: "0.2px"}}>{data?.overview}</p>
-							<button onClick={modalHandler}>Watch the trailer</button>
+							<Button type={ButtonTypes.PRIMARY} handler={modalHandler}>
+								Watch the trailer
+							</Button>
 						</Col>
 					</Row>
 					{
