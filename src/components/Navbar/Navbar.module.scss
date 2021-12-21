@@ -1,12 +1,13 @@
 @use '../../css/config' as *;
 
 .navbar {
+    height: 100vh;
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 0;
     left: 0;
-    background-color: $color-primary;
+    background-color: rgba($color-primary, 0.9);
+    backdrop-filter: blur(10px);
     z-index: 100;
     transform: translateX(-100vw);
     transition: all 200ms ease-out;
@@ -64,10 +65,12 @@
     }
 
     @include media-query(md) {
+        height: auto;
         position: relative;
         background-color: transparent;
         transform: none;
         opacity: 1;
+        backdrop-filter: initial;
 
         &__list {
             flex-direction: row;
