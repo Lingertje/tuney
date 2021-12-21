@@ -1,36 +1,95 @@
 @use '../../css/config' as *;
 
 .navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $color-primary;
+    z-index: 100;
+    transform: translateX(-100vw);
+    transition: all 200ms ease-out;
+    opacity: 0;
+
+    &.show {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
     &__list {
         display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
+        flex-direction: column;
+        margin-top: 56px;
+        border-top: 2px solid rgba(#fff, 0.4);
     }
 
     &__item {
-        opacity: 0.4;
         transition: opacity 150ms ease-out;
 
         :global(.active){
-            text-decoration: underline;
-            text-decoration-skip-ink: auto;
+            opacity: 1;
         }
 
         a {
             display: block;
-            padding: 24px 16px;
+            padding: 16px;
             color: $color-white;
             font-weight: 700;
             text-decoration: none;
+            opacity: 0.4;
+
+            &:hover {
+                opacity: 0.8;
+            }
         }
 
         svg {
             width: 18px;
             fill: currentColor;
         }
+    }
 
-        &:hover {
-            opacity: 0.8;
+    &__close-btn {
+        position: absolute;
+        top: 6px;
+        right: 8px;
+        padding: 6px;
+
+        svg {
+            width: 32px;
+            height: 32px;
+            transform: rotate(45deg);
+        }
+    }
+
+    @include media-query(md) {
+        position: relative;
+        background-color: transparent;
+        transform: none;
+        opacity: 1;
+
+        &__list {
+            flex-direction: row;
+            justify-content: flex-end;
+            margin-top: 0;
+            border: 0;
+        }
+
+        &__item {
+            :global(.active){
+                text-decoration: underline;
+                text-decoration-skip-ink: auto;
+                opacity: 0.4;
+            }
+
+            a {
+                padding: 24px 16px;
+            }
+        }
+
+        &__close-btn {
+            display: none;
         }
     }
 }
