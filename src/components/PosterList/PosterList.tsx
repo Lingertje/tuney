@@ -35,7 +35,11 @@ const PosterList: FC<PosterListProps> = ({ title, genre, category }: PosterListP
 		const { data } = await axios.get(`/${category}/${genre}?page=${pageParam}`);
 		return data;
 	}, {
-		getNextPageParam: (lastPage) => lastPage.page += 1
+		getNextPageParam: (lastPage) => {
+			console.log(lastPage);
+
+			lastPage.page += 1;
+		}
 	});
 
 	useEffect(() => {
@@ -52,6 +56,8 @@ const PosterList: FC<PosterListProps> = ({ title, genre, category }: PosterListP
 			if (currentRow) {
 				const scrollRight = currentRow?.scrollWidth - currentRow?.scrollLeft;
 				const scrollTillEnd = scrollRight - window.innerWidth;
+
+
 
 				if (scrollTillEnd === 0) {
 					fetchNextPage();

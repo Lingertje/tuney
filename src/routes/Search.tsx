@@ -1,7 +1,9 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Container, Row, Col } from "react-grid-system";
 import { Helmet } from "react-helmet";
 import { useQuery } from "react-query";
+import qs from "qs";
 import axios from "utils/AxiosInstance";
 
 import { Layout } from "components/Layout";
@@ -10,13 +12,24 @@ import { Poster } from "components/Poster/Poster";
 import { Movie } from "types/Movie";
 
 const Search: FC = () => {
-	const [query, setQuery] = useState<string | null>(null);
+	const location = useLocation();
+	const navigate = useNavigate();
+	const [query, setQuery] = useState<string | null>();
 	const { isLoading, error, data: {results} = {} } = useQuery([`search-${query}`, query], async () => {
 		const response = await axios.get(`/search/multi?query=${query}&sort_by=popularity.desc`);
 		return response.data;
 	});
 
-	const handleSubmit = (searchQuery: string) => {
+	useEffect(() => {
+		const { query: queryParam } : { query?: string } = qs.parse(location.search, { ignoreQueryPrefix: true });
+
+		setQuery(queryParam || null);
+	}, []);
+
+	const handleSubmit = (searchQuery: string | null) => {
+		searchQuery = searchQuery === "" ? null : searchQuery;
+
+		navigate(`/search?query=${searchQuery}`, { replace: true });
 		setQuery(searchQuery);
 	};
 
@@ -33,7 +46,7 @@ const Search: FC = () => {
 				<Container>
 					<Row>
 						<Col xs={12} lg={8}>
-							<Searchbar name="title" placeholder="Search..." callback={handleSubmit} />
+							<Searchbar name="title" placeholder="Search..." value={query || undefined} callback={handleSubmit} />
 						</Col>
 					</Row>
 				</Container>
