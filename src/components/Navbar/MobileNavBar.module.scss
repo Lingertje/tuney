@@ -1,0 +1,36 @@
+@use '../../css/config' as *;
+
+.mobile-navbar {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #1a1627;
+    z-index: 100;
+    padding: 0 40px;
+    box-shadow: 0 5px 12px 3px $color-primary;
+
+    &__list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 8px 0;
+    }
+
+    &__item {
+        padding: 12px;
+        background-color: $color-primary;
+        border-radius: 50%;
+
+        svg {
+            display: block;
+            width: 20px;
+            height: 20px;
+            fill: rgba(#fff, 0.6);
+        }
+    }
+
+    @include media-query(md) {
+        display: none;
+    }
+}

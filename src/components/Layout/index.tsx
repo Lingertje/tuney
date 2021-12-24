@@ -1,6 +1,7 @@
 import { FC, ReactNode } from "react";
 
 import { Header } from "components/Header";
+import { MobileNavBar } from "components/Navbar/MobileNavBar";
 
 interface LayoutProps {
   children: ReactNode,
@@ -15,6 +16,7 @@ const Layout: FC<LayoutProps> = ({ children, bgImageUrl, headerTitle }: LayoutPr
 			<main>
 				{ children }
 			</main>
+			<MobileNavBar />
 		</div>
 	);
 };

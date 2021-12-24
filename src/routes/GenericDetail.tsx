@@ -70,7 +70,7 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 					</Row>
 					<Row>
 						<Col xs={12} lg={8}>
-							<p style={{fontSize: "22px", lineHeight: 1.2, letterSpacing: "0.2px"}}>{data?.overview}</p>
+							<p className="intro">{data?.overview}</p>
 							<Button type={ButtonTypes.PRIMARY} handler={modalHandler}>
 								Watch the trailer
 							</Button>
