@@ -35,11 +35,7 @@ const PosterList: FC<PosterListProps> = ({ title, genre, category }: PosterListP
 		const { data } = await axios.get(`/${category}/${genre}?page=${pageParam}`);
 		return data;
 	}, {
-		getNextPageParam: (lastPage) => {
-			console.log(lastPage);
-
-			lastPage.page += 1;
-		}
+		getNextPageParam: (lastPage) => lastPage.page += 1
 	});
 
 	useEffect(() => {
