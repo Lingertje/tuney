@@ -9,7 +9,7 @@ test("Should render a button", () => {
 });
 
 test("Should render a disabled button", () => {
-	const { asFragment, getByRole } = render(<Button type={ButtonTypes.PRIMARY}>Click me</Button>);
+	const { asFragment, getByRole } = render(<Button type={ButtonTypes.PRIMARY} disabled>Click me</Button>);
 	expect(getByRole("button")).toBeDisabled;
 	expect(asFragment()).toMatchSnapshot();
 });
