@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render a button 1`] = `
+<DocumentFragment>
+  <button
+    class="button button--primary"
+  >
+    Click me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Should render a disabled button 1`] = `
+<DocumentFragment>
+  <button
+    class="button button--primary"
+    disabled=""
+  >
+    Click me
+  </button>
+</DocumentFragment>
+`;

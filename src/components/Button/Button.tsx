@@ -10,16 +10,17 @@ export enum ButtonTypes {
 
 type ButtonProps = {
 	type?: ButtonTypes
-	handler?: () => unknown
+	handler?: () => unknown,
+	disabled?: boolean
 	children: React.ReactNode
 }
 
 
-const Button: FC<ButtonProps> = ({ children, type = ButtonTypes.PRIMARY, handler }: ButtonProps) => {
+const Button: FC<ButtonProps> = ({ children, type = ButtonTypes.PRIMARY, handler, disabled }: ButtonProps) => {
 	const buttonClass = `button--${type}`;
 
 	return (
-		<button className={`${style["button"]} ${style[buttonClass]}`} onClick={handler ? handler : undefined} >
+		<button className={`${style["button"]} ${style[buttonClass]}`} onClick={handler ? handler : undefined} disabled={disabled} >
 			{children}
 		</button>
 	);
