@@ -5,6 +5,7 @@ import { Layout } from "components/Layout";
 import { PosterList } from "components/PosterList/PosterList";
 
 const Homepage: FC = () => {
+
 	return (
 		<Layout>
 			<Helmet>

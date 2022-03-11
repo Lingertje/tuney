@@ -3,16 +3,21 @@ import { Helmet } from "react-helmet";
 import { Container, Row, Col } from "react-grid-system";
 
 import { Layout } from "components/Layout";
-import { fetchFromLocalStorage } from "utils/LocalStorageAPI";
+import { fetchFromFirebase } from "utils/FavoritesStore";
 import { Movie } from "types/Movie";
 import { Poster } from "components/Poster/Poster";
+import { auth } from "firebase.config";
 
 const Favorites: FC = () => {
 	const [favorites, setFavorites] = useState<Movie[]>([]);
 
 	useEffect(() => {
-		const favorites = fetchFromLocalStorage("favorites");
-		setFavorites(favorites);
+		const fetchFavorites = async () => {
+			const favorites = await fetchFromFirebase(String(auth.currentUser?.email));
+			setFavorites(favorites);
+		};
+
+		fetchFavorites();
 	}, []);
 
 	return (
