@@ -18,14 +18,14 @@ const App: FC = () => {
 			<Router>
 				<Suspense fallback={<div>Loading...</div>}>
 					<Routes>
-						<Route path="/" element={<ProtectedRoute />}>
-							<Route path="/movie/:slug" element={<GenericDetail category="movie" />} />
-							<Route path="/movies" element={<Movies />} />
-							<Route path="/tv/:slug" element={<GenericDetail category="tv" />} />
-							<Route path="/series" element={<Series />} />
-							<Route path="/favorites" element={<Favorites />} />
-							<Route path="/search" element={<Search />} />
-							<Route path="/" element={<Homepage />} />
+						<Route path="/movie/:slug" element={<GenericDetail category="movie" />} />
+						<Route path="/movies" element={<Movies />} />
+						<Route path="/tv/:slug" element={<GenericDetail category="tv" />} />
+						<Route path="/series" element={<Series />} />
+						<Route path="/search" element={<Search />} />
+						<Route path="/" element={<Homepage />} />
+						<Route path="/favorites" element={<ProtectedRoute />}>
+							<Route index element={<Favorites />} />
 						</Route>
 						<Route path="/login" element={<Login />} />
 
