@@ -44,17 +44,15 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 		});
 
 		if (!trailers.length) {
-			return videos[0].key;
+			return videos[0]?.key;
 		}
 
-		return trailers[0].key;
+		return trailers[0]?.key;
 	};
 
 	const modalHandler = (() => {
 		setShowModal(showModal => !showModal);
 	});
-
-	console.log(data?.seasons);
 
 	return (
 		<Layout headerTitle={`${data?.title || data?.name} (${getYear(data?.release_date || data?.first_air_date)})`} bgImageUrl={ComposeImageUrl(data?.backdrop_path, "w1280")}>
@@ -71,9 +69,10 @@ const GenericDetail: FC<GenericDetailProps> = ({ category }: GenericDetailProps)
 					<Row>
 						<Col xs={12} lg={8}>
 							<p className="intro">{data?.overview}</p>
+							{ data?.videos?.results.length > 0 &&
 							<Button type={ButtonTypes.PRIMARY} handler={modalHandler}>
 								Watch the trailer
-							</Button>
+							</Button> }
 						</Col>
 					</Row>
 					{

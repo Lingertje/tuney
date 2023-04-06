@@ -18,6 +18,8 @@ const Search: FC = () => {
 	const { isLoading, error, data: {results} = {} } = useQuery([`search-${query}`, query], async () => {
 		const response = await axios.get(`/search/multi?query=${query}&sort_by=popularity.desc`);
 		return response.data;
+	}, {
+		enabled: query !== null
 	});
 
 	useEffect(() => {
@@ -59,7 +61,7 @@ const Search: FC = () => {
 							:
 							<Col xs={12} component="ul" className="reset-list" style={{display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
 								{
-									results.map((movie: Movie) => (
+									results?.map((movie: Movie) => (
 										<Poster key={movie.id} movie={movie} category={movie?.release_date ? "movie" : "tv"} />
 									))
 								}

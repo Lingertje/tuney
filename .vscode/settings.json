@@ -4,8 +4,5 @@
     },
     "eslint.validate": [
       "javascript"
-    ],
-    "files.associations": {
-      "*.yaml": "home-assistant"
-    }
+    ]
 }
